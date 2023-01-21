@@ -1,10 +1,10 @@
-PROJECT_NAME = engine-template
+RUN_PROJECT_NAME = sandbox/engine-template-sandbox
 
 buildall: cmake build
 
 br: cmake build
 	@echo -e "\033[1;32m==== RUNNING ====\033[0m"
-	@./out/build/$(PROJECT_NAME)
+	@./out/build/$(RUN_PROJECT_NAME)
 
 cmake:
 	@echo -e "\033[1;32m==== CMAKE STAGE ====\033[0m"

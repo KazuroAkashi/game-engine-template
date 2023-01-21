@@ -9,23 +9,11 @@ set(OpenGL_GL_PREFERENCE "LEGACY")
 
 set(PLATFORM GLFW)
 
-file(GLOB_RECURSE SRC_FILES src/*.cpp)
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+if(NOT DEFINED ENV{PROD})
+    add_compile_definitions(DEBUG)
+endif()
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-target_precompile_headers(${PROJECT_NAME} PRIVATE include/ext/entt.hpp include/ext/stb_image.h)
+add_subdirectory(engine)
+add_subdirectory(sandbox)
 
-find_package(assimp REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE assimp)
-
-find_package(GLU REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE GLU)
-
-find_package(GLEW REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE GLEW::GLEW)
-
-find_package(OpenGL REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${OPENGL_gl_LIBRARY})
-
-find_package(glfw3 CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
+target_link_libraries(engine-template-sandbox engine)
