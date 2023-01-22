@@ -1,10 +1,12 @@
-#include <iostream>
+#include "utils/debug.hpp"
 #include <GLFW/glfw3.h>
 
 #include "hello.h"
 
 void hello() {
-    std::cout << "Hello!" << std::endl;
+    Engine::log(Engine::LogLevel::INFO, "Hello");
+    Engine::log(Engine::LogLevel::WARN, "Hello");
+    Engine::log(Engine::LogLevel::ERROR, "Hello");
 }
 
 void window() {

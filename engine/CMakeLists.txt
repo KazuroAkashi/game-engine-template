@@ -8,6 +8,9 @@ add_library(${PROJECT_NAME} ${SRC_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_precompile_headers(${PROJECT_NAME} PRIVATE include/ext/entt.hpp include/ext/stb_image.h)
 
+find_package(fmt REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt)
+
 find_package(assimp REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE assimp)
 
