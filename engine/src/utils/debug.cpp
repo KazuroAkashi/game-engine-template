@@ -5,7 +5,7 @@
 #include <fmt/core.h>
 #include <chrono>
 
-#ifdef __gnu_linux__
+#if defined(__linux__) || defined(__APPLE__)
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
 #define RED     "\033[31m"      /* Red */
