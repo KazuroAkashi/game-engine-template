@@ -5,8 +5,8 @@
 
 namespace Engine {
 
-bool start(unsigned int window_width, unsigned int window_height, const char* window_title) {
-    bool window_success = Engine::platform->setup_window(window_width, window_height, window_title);
+bool start(const StartOptions options) {
+    bool window_success = Engine::platform->setup_window(options.window_width, options.window_height, options.window_title);
     if (!window_success) return false;
 
     if (glewInit() != GLEW_OK) return false;
