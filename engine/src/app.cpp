@@ -1,7 +1,7 @@
 #include "utils/debug.hpp"
 #include <GL/glew.h>
 
-#include "app.h"
+#include "app.hpp"
 
 namespace Engine {
 

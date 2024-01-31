@@ -1,4 +1,4 @@
-#include <app.h>
+#include <app.hpp>
 
 int main() {
     const Engine::StartOptions options = {
