@@ -1,8 +1,13 @@
-#include <hello.h>
+#include <app.h>
 
 int main() {
-    hello();
-    window();
+    bool success = Engine::start(1280, 720, "Testing");
+
+    if (success) {
+        Engine::loop();
+    }
+
+    Engine::destroy();
 
     return 0;
 }
