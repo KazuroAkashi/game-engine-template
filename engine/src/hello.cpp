@@ -4,9 +4,9 @@
 #include "hello.h"
 
 void hello() {
-    Engine::log(Engine::LogLevel::INFO, "Hello");
-    Engine::log(Engine::LogLevel::WARN, "Hello");
-    Engine::log(Engine::LogLevel::ERROR, "Hello");
+    Engine::log("Hello", Engine::LogLevel::INFO);
+    Engine::log("Hello", Engine::LogLevel::WARN);
+    Engine::log("Hello", Engine::LogLevel::ERROR);
 }
 
 void window() {

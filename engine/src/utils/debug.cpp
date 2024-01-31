@@ -76,7 +76,7 @@ void log_raw(const std::string& message [[maybe_unused]] ) {
 #endif
 }
 
-void log(LogLevel level [[maybe_unused]], const std::string& message [[maybe_unused]] ) {
+void log(const std::string& message [[maybe_unused]], LogLevel level [[maybe_unused]] ) {
 #ifdef DEBUG
     const auto color = log_level_color(level);
     log_raw(fmt::format("{}{}[{} {}]{}{} {}{}", BOLD, color, time_of_day(), log_level_name(level), RESET, color, message, RESET));
