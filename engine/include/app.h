@@ -3,19 +3,12 @@
 #include "platform/Platform.hpp"
 #include "utils/Memory.hpp"
 
-
-// Avoid double initialization
-#ifndef PLATFORM_INIT
-#define PLATFORM_INIT
-
 #if PLATFORM == GLFW
 #include "platform/GlfwPlatform.hpp"
 
 namespace Engine {
 const auto platform = Ref<GlfwPlatform>(new GlfwPlatform());
 }
-#endif
-
 #endif
 
 namespace Engine {
