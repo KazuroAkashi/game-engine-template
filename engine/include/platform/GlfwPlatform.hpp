@@ -20,6 +20,7 @@ protected:
     virtual float get_time() const override;
 
 public:
+    GlfwPlatform(EventBus* eventbus): Platform(eventbus) {};
     ~GlfwPlatform();
     virtual bool setup_window(unsigned int width, unsigned int height, const char* name) override;
     virtual bool window_should_close() override;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <format>
+
 namespace Engine {
 
 enum class LogLevel {

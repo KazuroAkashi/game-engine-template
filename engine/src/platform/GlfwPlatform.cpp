@@ -2,6 +2,9 @@
 #include "platform/GlfwPlatform.hpp"
 
 #include <GLFW/glfw3.h>
+#include "events/EventBus.hpp"
+#include "events/WindowResizeEvent.hpp"
+#include "events/CursorPosEvent.hpp"
 
 namespace Engine {
 
@@ -17,18 +20,35 @@ float GlfwPlatform::get_time() const {
     return glfwGetTime();
 }
 
+static const EventBus* s_eventbus;
+
+static void on_window_resize(GLFWwindow* window [[maybe_unused]], int width, int height) {
+    WindowResizeEvent event(width, height);
+    s_eventbus->submit_event(event);
+}
+
+static void on_cursor_pos(GLFWwindow* window [[maybe_unused]], double xpos, double ypos) {
+    CursorPosEvent event(xpos, ypos);
+    s_eventbus->submit_event(event);
+}
+
 bool GlfwPlatform::setup_window(unsigned int width, unsigned int height, const char* name) {
+    s_eventbus = m_eventbus;
 
     if (!glfwInit()) return false;
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
     m_window = glfwCreateWindow(width, height, name, NULL, NULL);
     if (!m_window) { return false; }
 
-    //glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+    glfwSetWindowSizeCallback(m_window, on_window_resize);
+    glfwSetCursorPosCallback(m_window, on_cursor_pos);
 
     glfwMakeContextCurrent(m_window);
 
